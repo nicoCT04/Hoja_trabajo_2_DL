@@ -1,0 +1,15 @@
+verificación,error máx.,ok
+atención vs F.sdpa (sin máscara),4.76837158203125e-07,True
+atención vs F.sdpa (is_causal=True),3.5762786865234375e-07,True
+atención vs F.sdpa (attn_mask booleana),3.5762786865234375e-07,True
+atención vs F.sdpa (scale=0.5),4.76837158203125e-07,True
+ejercicio a mano vs F.sdpa,2.384185791015625e-07,True
+MHA propia vs nn.MultiheadAttention (salida),1.1920928955078125e-07,True
+MHA propia vs nn.MHA (pesos por cabeza),8.940696716308594e-08,True
+average_attn_weights=True = promedio de cabezas,2.9802322387695312e-08,True
+key_padding_mask (True = ignorar),1.341104507446289e-07,True
+peso sobre posiciones de padding = 0,0.0,True
+attn_mask causal en nn.MHA,2.086162567138672e-07,True
+encoder causal: tokens 0..4 no ven el futuro,0.0,True
+filas de la softmax suman 1,1.1920928955078125e-07,True
+self-attention equivariante a permutaciones,8.940696716308594e-08,True
