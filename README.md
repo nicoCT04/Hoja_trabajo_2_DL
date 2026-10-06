@@ -8,16 +8,15 @@ Contenido del notebook `notebook/hoja2.ipynb`:
 1. **Investigación** (secciones 2–4): de seq2seq con RNN a la atención de Bahdanau/Luong, Q-K-V, arquitectura
    Transformer (√d_k, multi-head, codificación posicional, Post-LN vs Pre-LN, complejidad) y las APIs de PyTorch y
    Hugging Face para atención.
-2. **Ejercicio a mano** de scaled dot-product attention (3 tokens, con y sin máscara causal) reproducido con código.
-3. **Atención y multi-head attention desde cero** en PyTorch.
-4. **Escalamiento √d_k** (varianza de q·k, saturación de la softmax, norma del Jacobiano) y **costo computacional**
+2. **Atención y multi-head attention desde cero** en PyTorch.
+3. **Escalamiento √d_k** (varianza de q·k, saturación de la softmax, norma del Jacobiano) y **costo computacional**
    (tiempo y memoria vs. n, implementación ingenua vs. `F.scaled_dot_product_attention`).
-5. **BERT y GPT-2**: mapas de atención por cabeza con detección automática de patrones, correferencia de «it»
+4. **BERT y GPT-2**: mapas de atención por cabeza con detección automática de patrones, correferencia de «it»
    (*tired* vs *wide*), matriz causal y *attention sinks*, entropía por capa, ablación/poda de cabezas, atención vs.
    gradiente × entrada y vista interactiva con bertviz.
-6. **Verificaciones** de la implementación propia contra `F.scaled_dot_product_attention`, `nn.MultiheadAttention`,
+5. **Verificaciones** de la implementación propia contra `F.scaled_dot_product_attention`, `nn.MultiheadAttention`,
    máscaras y `TransformerEncoder` causal.
-7. Discusión, conclusiones y referencias.
+6. Discusión, conclusiones y referencias.
 
 ## Resultados principales
 
@@ -26,7 +25,7 @@ Contenido del notebook `notebook/hoja2.ipynb`:
 | Var(q·k) con q, k ~ N(0, I) | ≈ d_k (1 → 1024); con /√d_k ≈ 1 |
 | Softmax sin escalar, d_k = 64 | 84 % de la masa en una llave (escalada: 24 %) |
 | Costo de la atención (MPS) | pendiente log-log ≈ 2; 4 GB de matriz n×n con n = 8192 (8 cabezas, 1 capa) |
-| Verificaciones contra PyTorch | 14 / 14, error máx. < 10⁻⁶ |
+| Verificaciones contra PyTorch | 13 / 13, error máx. < 10⁻⁶ |
 | Cabezas de BERT que resuelven «it» | 22 / 144 (mejor: capa 7, cabeza 11) |
 | GPT-2: atención al primer token | 24 % (capa 1) → ~82 % (capas 10–11); 103 / 144 cabezas > 50 % |
 | Poda de cabezas en BERT | apagar 42 % de las cabezas: pérdida MLM 1.78 → 1.88 |
